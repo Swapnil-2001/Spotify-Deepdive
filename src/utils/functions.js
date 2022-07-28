@@ -17,5 +17,14 @@ export const getAuthParamValues = (url) => {
     }, {});
 };
 
+export const isAccessTokenValid = () => {
+  let tokenExpiryTime = "0";
+  if (localStorage.getItem("expiry_time")) {
+    tokenExpiryTime = JSON.parse(localStorage.getItem("expiry_time"));
+  }
+  const currentTime = new Date().getTime();
+  return currentTime < tokenExpiryTime;
+};
+
 const spotify = new SpotifyWebApi();
 export default spotify;
