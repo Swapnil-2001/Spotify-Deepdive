@@ -7,6 +7,7 @@ import { getUserProfile } from "../../features/user/userFunctions";
 import User from "../../components/User/User";
 
 const HomePage = () => {
+  const [searchType, setSearchType] = useState("tracks");
   const [searchTerm, setSearchTerm] = useState("");
 
   const dispatch = useDispatch();
@@ -27,13 +28,28 @@ const HomePage = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    navigate(`/${searchTerm}`);
+    switch (searchType) {
+      case "albums":
+        navigate(`/albums/${searchTerm}`);
+        break;
+      case "artists":
+        navigate(`/artists/${searchTerm}`);
+        break;
+      case "tracks":
+      default:
+        navigate(`/tracks/${searchTerm}`);
+    }
   };
 
   return (
     <div>
       {userLoading && "Loading"}
       {userProfile && <User userProfile={userProfile} />}
+      <div>
+        <button onClick={() => setSearchType("tracks")}>Tracks</button>
+        <button onClick={() => setSearchType("albums")}>Albums</button>
+        <button onClick={() => setSearchType("artists")}>Artists</button>
+      </div>
       <form onSubmit={handleSearch}>
         <input
           value={searchTerm}

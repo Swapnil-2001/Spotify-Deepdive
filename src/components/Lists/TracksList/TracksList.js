@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import "./TracksList.css";
 
 const TracksList = ({ tracks }) => {
@@ -7,7 +8,7 @@ const TracksList = ({ tracks }) => {
   return (
     <div className="tracks_wrapper_div">
       {previewUrl.length > 0 && (
-        <audio controls src={previewUrl} autoPlay hidden={true} />
+        <audio src={previewUrl} autoPlay hidden={true} />
       )}
       {tracks.map(({ id, album, preview_url }) => (
         <div
@@ -19,9 +20,9 @@ const TracksList = ({ tracks }) => {
           onMouseLeave={() => setPreviewUrl("")}
         >
           {album?.images?.length > 0 ? (
-            <img src={album.images[0].url} alt="Album" />
+            <img src={album.images[0].url} alt="Track" />
           ) : (
-            "Error fetching album!"
+            "Error fetching track!"
           )}
         </div>
       ))}

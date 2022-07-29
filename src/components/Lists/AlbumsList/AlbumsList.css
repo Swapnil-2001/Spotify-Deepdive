@@ -1,0 +1,14 @@
+.albums_wrapper_div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}
+
+.individual_album {
+  margin: 10px;
+}
+
+.individual_album img {
+  width: 90px;
+}
