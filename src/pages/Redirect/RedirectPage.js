@@ -6,13 +6,13 @@ import { getAuthParamValues } from "../../utils/functions";
 
 const Redirect = () => {
   const navigate = useNavigate();
-  // Gives the part of the URL after '#'
+  // Gives the part of the URL from '#'
   const { hash } = useLocation();
 
   useEffect(() => {
     if (!_.isEmpty(hash)) {
       const authParams = getAuthParamValues(hash);
-      localStorage.setItem("authParams", JSON.stringify(authParams));
+      localStorage.setItem("access_token", authParams.access_token);
       const expiryTime = new Date().getTime() + authParams.expires_in * 1000;
       localStorage.setItem("expiry_time", expiryTime);
     }

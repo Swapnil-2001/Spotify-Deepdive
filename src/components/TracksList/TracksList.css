@@ -1,0 +1,14 @@
+.tracks_wrapper_div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}
+
+.individual_track {
+  margin: 10px;
+}
+
+.individual_track img {
+  width: 90px;
+}

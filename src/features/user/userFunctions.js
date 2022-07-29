@@ -5,7 +5,14 @@ import spotify from "../../utils/functions";
 export const getUserProfile = createAsyncThunk(
   "user/getUserProfile",
   async () => {
-    const userProfile = await spotify.getMe();
-    return userProfile;
+    try {
+      const userProfile = await spotify.getMe();
+      return userProfile;
+    } catch (error) {
+      console.error(
+        "An error occurred while fetching the user's profile. ",
+        error
+      );
+    }
   }
 );
