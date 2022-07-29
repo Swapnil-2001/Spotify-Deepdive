@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
 import "./TracksList.css";
 
 const TracksList = ({ tracks }) => {
@@ -22,7 +23,7 @@ const TracksList = ({ tracks }) => {
           {album?.images?.length > 0 ? (
             <img src={album.images[0].url} alt="Track" />
           ) : (
-            "Error fetching track!"
+            <img src={DEFAULT_TRACK_PICTURE} alt="Track" />
           )}
         </div>
       ))}

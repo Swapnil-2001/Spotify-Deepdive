@@ -16,3 +16,18 @@ export const getSearchedAlbums = createAsyncThunk(
     }
   }
 );
+
+export const setSelectedAlbum = createAsyncThunk(
+  "searchedAlbums/setSelectedAlbum",
+  async (albumId) => {
+    try {
+      const selectedAlbum = await spotify.getAlbum(albumId);
+      return selectedAlbum;
+    } catch (error) {
+      console.error(
+        "An error occurred while fetching the desired album. ",
+        error
+      );
+    }
+  }
+);
