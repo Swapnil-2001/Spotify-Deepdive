@@ -1,24 +1,13 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import SelectedAlbum from "./SelectedAlbum/SelectedAlbum";
-import { setSelectedAlbum } from "../../../features/search/searchedAlbums/searchedAlbumsFunctions";
-import { removeSelectedAlbum } from "../../../features/search/searchedAlbums/searchedAlbumsSlice";
 import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
 import "./AlbumsList.css";
 
 const AlbumsList = ({ albums }) => {
-  const [selectedAlbumId, setSelectedAlbumId] = useState(null);
-  const { selectedAlbum, selectedAlbumLoading } = useSelector(
-    (state) => state.searchedAlbums
-  );
-
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const selectAlbum = (albumId) => {
-    dispatch(removeSelectedAlbum());
-    dispatch(setSelectedAlbum(albumId));
-    setSelectedAlbumId(albumId);
+    navigate(`/album/${albumId}`);
   };
 
   return (
@@ -32,12 +21,6 @@ const AlbumsList = ({ albums }) => {
           {album.images?.length > 0 ? (
             <div>
               <img src={album.images[0].url} alt="Album Cover" />
-              {selectedAlbumId === album.id && selectedAlbumLoading && (
-                <p>Loading</p>
-              )}
-              {selectedAlbumId === album.id && selectedAlbum && (
-                <SelectedAlbum album={selectedAlbum} />
-              )}
             </div>
           ) : (
             <img src={DEFAULT_TRACK_PICTURE} alt="Album Cover" />
