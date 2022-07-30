@@ -44,21 +44,47 @@ const HomePage = () => {
 
   return (
     <div className="home_wrapper_div">
-      {userLoading && "Loading"}
-      {userProfile && <User userProfile={userProfile} />}
-      <div>
-        <button onClick={() => setSearchType("tracks")}>Tracks</button>
-        <button onClick={() => setSearchType("albums")}>Albums</button>
-        <button onClick={() => setSearchType("artists")}>Artists</button>
+      <div className="search_types_div">
+        <button
+          className={`search_types_button ${
+            searchType === "tracks" ? "selected" : ""
+          }`}
+          onClick={() => setSearchType("tracks")}
+        >
+          Tracks
+        </button>
+        <button
+          className={`search_types_button ${
+            searchType === "albums" ? "selected" : ""
+          }`}
+          onClick={() => setSearchType("albums")}
+        >
+          Albums
+        </button>
+        <button
+          className={`search_types_button ${
+            searchType === "artists" ? "selected" : ""
+          }`}
+          onClick={() => setSearchType("artists")}
+        >
+          Artists
+        </button>
       </div>
-      <form onSubmit={handleSearch}>
-        <input
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
-      <Outlet />
+      <div className="right_section_div">
+        {userLoading && "Loading"}
+        {userProfile && <User userProfile={userProfile} />}
+        <form onSubmit={handleSearch}>
+          <input
+            className="search_input"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button className="search_button" type="submit">
+            Search
+          </button>
+        </form>
+        <Outlet />
+      </div>
     </div>
   );
 };
