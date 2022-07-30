@@ -16,7 +16,7 @@ const TopTracks = () => {
         <audio src={previewUrl} autoPlay hidden={true} />
       )}
       {artistTopTracksLoading && <p>Loading top tracks...</p>}
-      {artistTopTracks && (
+      {artistTopTracks?.length > 0 && (
         <div style={{ display: "flex" }}>
           {artistTopTracks.map(({ id, album, preview_url }) => (
             <div

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
+import DEFAULT_PICTURE from "../../../assets/music.png";
 import "./AlbumsList.css";
 
 const AlbumsList = ({ albums }) => {
@@ -23,7 +23,7 @@ const AlbumsList = ({ albums }) => {
               <img src={album.images[0].url} alt="Album Cover" />
             </div>
           ) : (
-            <img src={DEFAULT_TRACK_PICTURE} alt="Album Cover" />
+            <img src={DEFAULT_PICTURE} alt="Album Cover" />
           )}
         </div>
       ))}

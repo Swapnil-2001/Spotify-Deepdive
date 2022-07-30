@@ -33,3 +33,18 @@ export const getArtistTopTracks = createAsyncThunk(
     }
   }
 );
+
+export const getRelatedArtists = createAsyncThunk(
+  "searchedArtists/getRelatedArtists",
+  async (artistId) => {
+    try {
+      const relatedArtists = await spotify.getArtistRelatedArtists(artistId);
+      return relatedArtists.artists;
+    } catch (error) {
+      console.error(
+        "An error occurred while fetching related artists. ",
+        error
+      );
+    }
+  }
+);

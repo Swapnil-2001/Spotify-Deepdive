@@ -1,7 +1,10 @@
 import { useDispatch } from "react-redux";
 
-import { getArtistTopTracks } from "../../../features/search/searchedArtists/searchedArtistsFunctions";
-import TopTracks from "./TopTracks/TopTracks";
+import {
+  getArtistTopTracks,
+  getRelatedArtists,
+} from "../../../features/search/searchedArtists/searchedArtistsFunctions";
+import { removeSelectedArtist } from "../../../features/search/searchedArtists/searchedArtistsSlice";
 import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
 import "./ArtistsList.css";
 
@@ -9,13 +12,19 @@ const ArtistsList = ({ artists }) => {
   const dispatch = useDispatch();
 
   const selectArtist = (artistId) => {
+    dispatch(removeSelectedArtist());
     dispatch(getArtistTopTracks(artistId));
+    dispatch(getRelatedArtists(artistId));
   };
 
   return (
     <div>
-      {artists.map(({ id, images, name }) => (
-        <div key={id} onClick={() => selectArtist(id)}>
+      {artists?.map(({ id, images, name }) => (
+        <div
+          key={id}
+          className="individual_artist"
+          onClick={() => selectArtist(id)}
+        >
           {images?.length > 0 ? (
             <img src={images[0].url} alt="Artist" />
           ) : (
@@ -24,7 +33,6 @@ const ArtistsList = ({ artists }) => {
           {name}
         </div>
       ))}
-      <TopTracks />
     </div>
   );
 };

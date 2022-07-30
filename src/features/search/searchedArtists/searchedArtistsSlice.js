@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import {
   getArtistTopTracks,
+  getRelatedArtists,
   getSearchedArtists,
 } from "./searchedArtistsFunctions";
 
@@ -18,6 +19,15 @@ const searchedArtistsSlice = createSlice({
     artistAlbumsLoading: false,
     relatedArtists: [],
     relatedArtistsLoading: false,
+  },
+  reducers: {
+    removeSelectedArtist: (state) => ({
+      ...state,
+      selectedArtist: null,
+      artistTopTracks: [],
+      relatedArtists: [],
+      artistAlbums: [],
+    }),
   },
   extraReducers: (builder) => {
     builder
@@ -48,8 +58,24 @@ const searchedArtistsSlice = createSlice({
         ...state,
         artistTopTracks: action.payload,
         artistTopTracksLoading: false,
+      }))
+      .addCase(getRelatedArtists.pending, (state) => ({
+        ...state,
+        relatedArtistsLoading: true,
+      }))
+      .addCase(getRelatedArtists.rejected, (state) => ({
+        ...state,
+        relatedArtists: [],
+        relatedArtistsLoading: false,
+      }))
+      .addCase(getRelatedArtists.fulfilled, (state, action) => ({
+        ...state,
+        relatedArtists: action.payload,
+        relatedArtistsLoading: false,
       }));
   },
 });
+
+export const { removeSelectedArtist } = searchedArtistsSlice.actions;
 
 export default searchedArtistsSlice.reducer;
