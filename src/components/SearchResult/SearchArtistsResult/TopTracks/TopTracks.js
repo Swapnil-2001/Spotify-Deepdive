@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import DEFAULT_TRACK_PICTURE from "../../../../assets/music.png";
-import "./TopTracks.css";
+import "./TopTracks.scss";
 
 const TopTracks = () => {
   const [previewUrl, setPreviewUrl] = useState("");

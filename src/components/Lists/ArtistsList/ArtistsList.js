@@ -6,7 +6,7 @@ import {
 } from "../../../features/search/searchedArtists/searchedArtistsFunctions";
 import { removeSelectedArtist } from "../../../features/search/searchedArtists/searchedArtistsSlice";
 import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
-import "./ArtistsList.css";
+import "./ArtistsList.scss";
 
 const ArtistsList = ({ artists }) => {
   const dispatch = useDispatch();

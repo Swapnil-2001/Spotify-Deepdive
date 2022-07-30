@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import DEFAULT_PICTURE from "../../../assets/music.png";
-import "./AlbumsList.css";
+import "./AlbumsList.scss";
 
 const AlbumsList = ({ albums }) => {
   const navigate = useNavigate();

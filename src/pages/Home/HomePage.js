@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import spotify, { isAccessTokenValid } from "../../utils/functions";
 import { getUserProfile } from "../../features/user/userFunctions";
 import User from "../../components/User/User";
+import "./HomePage.scss";
 
 const HomePage = () => {
   const [searchType, setSearchType] = useState("tracks");
@@ -42,7 +43,7 @@ const HomePage = () => {
   };
 
   return (
-    <div>
+    <div className="home_wrapper_div">
       {userLoading && "Loading"}
       {userProfile && <User userProfile={userProfile} />}
       <div>

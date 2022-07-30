@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
-import "./TracksList.css";
+import "./TracksList.scss";
 
 const TracksList = ({ tracks }) => {
   const [previewUrl, setPreviewUrl] = useState("");

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DEFAULT_TRACK_PICTURE from "../../assets/music.png";
 import { setSelectedAlbum } from "../../features/search/searchedAlbums/searchedAlbumsFunctions";
 import { removeSelectedAlbum } from "../../features/search/searchedAlbums/searchedAlbumsSlice";
-import "./SelectedAlbum.css";
+import "./SelectedAlbum.scss";
 
 const SelectedAlbum = () => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 import ArtistsList from "../../../Lists/ArtistsList/ArtistsList";
-import "./RelatedArtists.css";
+import "./RelatedArtists.scss";
 
 const RelatedArtists = () => {
   const { relatedArtists } = useSelector((state) => state.searchedArtists);
