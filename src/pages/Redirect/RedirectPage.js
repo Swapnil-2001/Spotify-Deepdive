@@ -16,7 +16,7 @@ const Redirect = () => {
       const expiryTime = new Date().getTime() + authParams.expires_in * 1000;
       localStorage.setItem("expiry_time", expiryTime);
     }
-    navigate("/");
+    navigate("/tracks");
   }, [hash, navigate]);
 
   return null;

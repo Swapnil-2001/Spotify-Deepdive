@@ -1,20 +1,24 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getSearchedArtists } from "../../../features/search/searchedArtists/searchedArtistsFunctions";
+import { addSearchedType } from "../../../features/search/searchedTerm/searchedTermSlice";
 import ArtistsList from "../../Lists/ArtistsList/ArtistsList";
 import TopTracks from "./TopTracks/TopTracks";
 import RelatedArtists from "./RelatedArtists/RelatedArtists";
 
 const SearchArtistsResult = () => {
-  const { searchTerm } = useParams();
   const dispatch = useDispatch();
   const { searchedArtists } = useSelector((state) => state.searchedArtists);
+  const { searchedTerm, searchedType } = useSelector(
+    (state) => state.searchedTerm
+  );
 
   useEffect(() => {
-    dispatch(getSearchedArtists(searchTerm));
-  }, [dispatch, searchTerm]);
+    dispatch(addSearchedType("artists"));
+    if (searchedTerm !== "" && searchedType === "artists")
+      dispatch(getSearchedArtists(searchedTerm));
+  }, [searchedTerm, searchedType, searchedArtists, dispatch]);
 
   return (
     <div>

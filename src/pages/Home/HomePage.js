@@ -4,17 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 import spotify, { isAccessTokenValid } from "../../utils/functions";
 import { getUserProfile } from "../../features/user/userFunctions";
+import { addSearchedTerm } from "../../features/search/searchedTerm/searchedTermSlice";
 import User from "../../components/User/User";
 import "./HomePage.scss";
 
 const HomePage = () => {
-  const [searchType, setSearchType] = useState("tracks");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchedTerm, setSearchedTerm] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { userProfile, userLoading } = useSelector((state) => state.user);
+  const { searchedType } = useSelector((state) => state.searchedTerm);
 
   useEffect(() => {
     if (!isAccessTokenValid()) {
@@ -23,23 +24,28 @@ const HomePage = () => {
     } else {
       const accessToken = localStorage.getItem("access_token");
       spotify.setAccessToken(accessToken);
-      dispatch(getUserProfile());
+      if (!userProfile) dispatch(getUserProfile());
     }
-  }, [navigate, dispatch]);
+  }, [userProfile, navigate, dispatch]);
+
+  const handleSearchedTypeTracks = () => {
+    dispatch(addSearchedTerm(""));
+    navigate(`/tracks`);
+  };
+
+  const handleSearchedTypeAlbums = () => {
+    dispatch(addSearchedTerm(""));
+    navigate(`/albums`);
+  };
+
+  const handleSearchedTypeArtists = () => {
+    dispatch(addSearchedTerm(""));
+    navigate(`/artists`);
+  };
 
   const handleSearch = (event) => {
     event.preventDefault();
-    switch (searchType) {
-      case "albums":
-        navigate(`/albums/${searchTerm}`);
-        break;
-      case "artists":
-        navigate(`/artists/${searchTerm}`);
-        break;
-      case "tracks":
-      default:
-        navigate(`/tracks/${searchTerm}`);
-    }
+    dispatch(addSearchedTerm(searchedTerm));
   };
 
   return (
@@ -47,25 +53,25 @@ const HomePage = () => {
       <div className="search_types_div">
         <button
           className={`search_types_button ${
-            searchType === "tracks" ? "selected" : ""
+            searchedType === "tracks" ? "selected" : ""
           }`}
-          onClick={() => setSearchType("tracks")}
+          onClick={handleSearchedTypeTracks}
         >
           Tracks
         </button>
         <button
           className={`search_types_button ${
-            searchType === "albums" ? "selected" : ""
+            searchedType === "albums" ? "selected" : ""
           }`}
-          onClick={() => setSearchType("albums")}
+          onClick={handleSearchedTypeAlbums}
         >
           Albums
         </button>
         <button
           className={`search_types_button ${
-            searchType === "artists" ? "selected" : ""
+            searchedType === "artists" ? "selected" : ""
           }`}
-          onClick={() => setSearchType("artists")}
+          onClick={handleSearchedTypeArtists}
         >
           Artists
         </button>
@@ -76,8 +82,8 @@ const HomePage = () => {
         <form onSubmit={handleSearch}>
           <input
             className="search_input"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchedTerm}
+            onChange={(e) => setSearchedTerm(e.target.value)}
           />
           <button className="search_button" type="submit">
             Search

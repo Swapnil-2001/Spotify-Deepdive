@@ -1,13 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
+import { removeSelectedAlbum } from "../../../features/search/searchedAlbums/searchedAlbumsSlice";
+import { setSelectedAlbum } from "../../../features/search/searchedAlbums/searchedAlbumsFunctions";
 import DEFAULT_PICTURE from "../../../assets/music.png";
 import "./AlbumsList.scss";
 
 const AlbumsList = ({ albums }) => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const selectAlbum = (albumId) => {
-    navigate(`/album/${albumId}`);
+    dispatch(removeSelectedAlbum());
+    dispatch(setSelectedAlbum(albumId));
   };
 
   return (
