@@ -1,0 +1,25 @@
+.selected_track_details_div {
+  background-color: rgba(104, 109, 118, 0.8);
+  padding: 30px;
+  border-radius: 5px;
+  color: #efefef;
+  display: flex;
+  align-items: center;
+}
+
+.track_img {
+  display: flex;
+  align-items: center;
+  img {
+    width: 10rem;
+  }
+}
+
+.track_name_and_artist {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2.5rem;
+  h1 {
+    margin-bottom: 30px;
+  }
+}
