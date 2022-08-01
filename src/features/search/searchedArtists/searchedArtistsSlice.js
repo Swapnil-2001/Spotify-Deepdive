@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import {
+  getSearchedArtists,
+  getArtist,
   getArtistTopTracks,
   getRelatedArtists,
-  getSearchedArtists,
 } from "./searchedArtistsFunctions";
 
 const searchedArtistsSlice = createSlice({
@@ -44,6 +45,20 @@ const searchedArtistsSlice = createSlice({
         ...state,
         searchedArtists: action.payload,
         searchedArtistsLoading: false,
+      }))
+      .addCase(getArtist.pending, (state) => ({
+        ...state,
+        selectedArtistLoading: true,
+      }))
+      .addCase(getArtist.rejected, (state) => ({
+        ...state,
+        selectedArtist: null,
+        selectedArtistLoading: false,
+      }))
+      .addCase(getArtist.fulfilled, (state, action) => ({
+        ...state,
+        selectedArtist: action.payload,
+        selectedArtistLoading: false,
       }))
       .addCase(getArtistTopTracks.pending, (state) => ({
         ...state,

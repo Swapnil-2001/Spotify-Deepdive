@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getSearchedTracks } from "../../../features/search/searchedTracks/searchedTracksFunctions";
@@ -15,6 +15,14 @@ const SearchTracksResult = () => {
     (state) => state.searchedTerm
   );
 
+  const tracksRef = useRef(null);
+  const scrollToView = () => {
+    tracksRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToView();
+  }, [selectedTrackDetails]);
+
   useEffect(() => {
     dispatch(addSearchedType("tracks"));
     if (searchedTerm !== "" && searchedType === "tracks")
@@ -25,7 +33,10 @@ const SearchTracksResult = () => {
     <div>
       {searchedTracks && <TracksList tracks={searchedTracks} />}
       {selectedTrackDetails && (
-        <SelectedTrackDetails trackDetails={selectedTrackDetails} />
+        <SelectedTrackDetails
+          tracksRef={tracksRef}
+          trackDetails={selectedTrackDetails}
+        />
       )}
     </div>
   );

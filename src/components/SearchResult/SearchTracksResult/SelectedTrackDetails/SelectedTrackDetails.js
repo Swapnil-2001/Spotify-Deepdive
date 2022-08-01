@@ -1,10 +1,10 @@
 import "./SelectedTrackDetails.scss";
 
-const SelectedTrackDetails = ({ trackDetails }) => {
+const SelectedTrackDetails = ({ tracksRef, trackDetails }) => {
   const { trackName, artistName, trackImgUrl } = trackDetails;
 
   return (
-    <div className="selected_track_details_div">
+    <div ref={tracksRef} className="selected_track_details_div">
       <div className="track_img">
         <img src={trackImgUrl} alt="Track" />
       </div>

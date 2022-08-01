@@ -6,7 +6,14 @@ import "./RelatedArtists.scss";
 const RelatedArtists = () => {
   const { relatedArtists } = useSelector((state) => state.searchedArtists);
 
-  return <ArtistsList artists={relatedArtists} />;
+  return (
+    <>
+      {relatedArtists?.length > 0 && (
+        <h2 className="related_artists_heading">Related Artists</h2>
+      )}
+      <ArtistsList artists={relatedArtists} />
+    </>
+  );
 };
 
 export default RelatedArtists;

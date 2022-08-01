@@ -7,12 +7,27 @@ export const getSearchedArtists = createAsyncThunk(
   async (searchTerm) => {
     try {
       const searchedArtists = await spotify.searchArtists(searchTerm, {
-        limit: 3,
+        limit: 6,
       });
       return searchedArtists.artists?.items;
     } catch (error) {
       console.error(
         "An error occurred while fetching artist search results. ",
+        error
+      );
+    }
+  }
+);
+
+export const getArtist = createAsyncThunk(
+  "searchedArtists/getArtist",
+  async (artistId) => {
+    try {
+      const artist = await spotify.getArtist(artistId);
+      return artist;
+    } catch (error) {
+      console.error(
+        "An error occurred while fetching the artist details. ",
         error
       );
     }

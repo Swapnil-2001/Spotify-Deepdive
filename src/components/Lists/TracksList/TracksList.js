@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux/es/exports";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { setSelectedTrackDetails } from "../../../features/search/searchedTracks/searchedTracksSlice";
 import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
@@ -7,13 +8,8 @@ import "./TracksList.scss";
 
 const TracksList = ({ tracks }) => {
   const [previewUrl, setPreviewUrl] = useState("");
-  // {
-  //    artists: {
-  //        name
-  //        id
-  //    }
-  // }
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const selectTrack = (artists, album, name) => {
     const trackDetails = {
@@ -26,6 +22,7 @@ const TracksList = ({ tracks }) => {
     if (album?.images?.length > 0) {
       trackDetails.trackImgUrl = album.images[0].url;
     }
+    navigate("/tracks");
     dispatch(setSelectedTrackDetails(trackDetails));
   };
 

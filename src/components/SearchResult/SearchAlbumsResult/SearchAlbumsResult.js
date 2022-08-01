@@ -17,7 +17,7 @@ const SearchAlbumsResult = () => {
     dispatch(addSearchedType("albums"));
     if (searchedTerm !== "" && searchedType === "albums")
       dispatch(getSearchedAlbums(searchedTerm));
-  }, [searchedTerm, searchedType, searchedAlbums, dispatch]);
+  }, [searchedTerm, searchedType, dispatch]);
 
   return (
     <div>

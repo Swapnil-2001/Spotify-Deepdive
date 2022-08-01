@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Audio } from "react-loader-spinner";
 
 import spotify, { isAccessTokenValid } from "../../utils/functions";
 import { getUserProfile } from "../../features/user/userFunctions";
@@ -77,7 +78,7 @@ const HomePage = () => {
         </button>
       </div>
       <div className="right_section_div">
-        {userLoading && "Loading"}
+        {userLoading && <Audio color="#fff" height={60} width={60} />}
         {userProfile && <User userProfile={userProfile} />}
         <form onSubmit={handleSearch}>
           <input
