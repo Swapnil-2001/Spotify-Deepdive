@@ -4,6 +4,7 @@ import {
   getSearchedArtists,
   getArtist,
   getArtistTopTracks,
+  getArtistAlbums,
   getRelatedArtists,
 } from "./searchedArtistsFunctions";
 
@@ -77,6 +78,20 @@ const searchedArtistsSlice = createSlice({
         ...state,
         artistTopTracks: action.payload,
         artistTopTracksLoading: false,
+      }))
+      .addCase(getArtistAlbums.pending, (state) => ({
+        ...state,
+        artistAlbumsLoading: true,
+      }))
+      .addCase(getArtistAlbums.rejected, (state) => ({
+        ...state,
+        artistAlbums: [],
+        artistAlbumsLoading: false,
+      }))
+      .addCase(getArtistAlbums.fulfilled, (state, action) => ({
+        ...state,
+        artistAlbums: action.payload,
+        artistAlbumsLoading: false,
       }))
       .addCase(getRelatedArtists.pending, (state) => ({
         ...state,

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   getArtist,
   getArtistTopTracks,
+  getArtistAlbums,
   getRelatedArtists,
 } from "../../../features/search/searchedArtists/searchedArtistsFunctions";
 import { removeSelectedArtist } from "../../../features/search/searchedArtists/searchedArtistsSlice";
@@ -15,6 +16,7 @@ const ArtistsList = ({ artists }) => {
     dispatch(removeSelectedArtist());
     dispatch(getArtist(artistId));
     dispatch(getArtistTopTracks(artistId));
+    dispatch(getArtistAlbums(artistId));
     dispatch(getRelatedArtists(artistId));
   };
 

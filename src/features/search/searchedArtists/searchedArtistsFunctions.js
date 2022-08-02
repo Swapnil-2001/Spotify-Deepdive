@@ -49,6 +49,21 @@ export const getArtistTopTracks = createAsyncThunk(
   }
 );
 
+export const getArtistAlbums = createAsyncThunk(
+  "searchedArtists/getArtistAlbums",
+  async (artistId) => {
+    try {
+      const artistAlbums = await spotify.getArtistAlbums(artistId);
+      return artistAlbums.items;
+    } catch (error) {
+      console.error(
+        "An error occurred while fetching artist's albums. ",
+        error
+      );
+    }
+  }
+);
+
 export const getRelatedArtists = createAsyncThunk(
   "searchedArtists/getRelatedArtists",
   async (artistId) => {

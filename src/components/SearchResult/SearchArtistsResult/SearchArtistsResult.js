@@ -8,6 +8,7 @@ import { addSearchedType } from "../../../features/search/searchedTerm/searchedT
 import ArtistsList from "../../Lists/ArtistsList/ArtistsList";
 import ArtistInfo from "./ArtistInfo/ArtistInfo";
 import TopTracks from "./TopTracks/TopTracks";
+import ArtistAlbums from "./ArtistAlbums/ArtistAlbums";
 import RelatedArtists from "./RelatedArtists/RelatedArtists";
 
 const SearchArtistsResult = () => {
@@ -19,6 +20,8 @@ const SearchArtistsResult = () => {
     selectedArtistLoading,
     artistTopTracks,
     artistTopTracksLoading,
+    artistAlbums,
+    artistAlbumsLoading,
     relatedArtists,
     relatedArtistsLoading,
   } = useSelector((state) => state.searchedArtists);
@@ -44,6 +47,8 @@ const SearchArtistsResult = () => {
       {artistTopTracks?.length > 0 && (
         <TopTracks artistTopTracks={artistTopTracks} />
       )}
+      {artistAlbumsLoading && <LoadingSpinner />}
+      {artistAlbums?.length > 0 && <ArtistAlbums artistAlbums={artistAlbums} />}
       {relatedArtistsLoading && <LoadingSpinner />}
       {relatedArtists?.length > 0 && (
         <RelatedArtists relatedArtists={relatedArtists} />
