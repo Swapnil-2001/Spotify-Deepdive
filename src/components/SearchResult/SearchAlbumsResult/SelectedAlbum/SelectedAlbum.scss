@@ -1,3 +1,68 @@
 .all_tracks_in_album {
   display: flex;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  padding: 30px 40px;
+  margin-top: 30px;
+  color: #eeeeee;
+  img {
+    width: 300px;
+  }
+}
+
+.album_image_and_name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 2;
+  .album_heading {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  .album_name {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 2rem;
+  }
+}
+
+.track_names {
+  flex: 3;
+  margin-left: 40px;
+  h2 {
+    margin-left: 20px;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+}
+
+.individual_track_in_album {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: 0.3s all ease-in-out;
+  span {
+    margin-right: 10px;
+  }
+  &:hover {
+    background-color: rgba(104, 109, 118, 0.9);
+  }
+  .track_info_button {
+    background-color: #f05454;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: white;
+    border-radius: 5px;
+    margin-left: auto;
+    transition: background-color 0.2s ease-in-out;
+    &:hover {
+      background-color: #e9290f;
+    }
+  }
+  .hide {
+    visibility: hidden;
+  }
 }

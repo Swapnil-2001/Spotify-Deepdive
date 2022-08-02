@@ -5,6 +5,9 @@ import { Audio } from "react-loader-spinner";
 
 import spotify, { isAccessTokenValid } from "../../utils/functions";
 import { getUserProfile } from "../../features/user/userFunctions";
+import { removeSearchedTracks } from "../../features/search/searchedTracks/searchedTracksSlice";
+import { removeSearchedAlbums } from "../../features/search/searchedAlbums/searchedAlbumsSlice";
+import { removeSearchedArtists } from "../../features/search/searchedArtists/searchedArtistsSlice";
 import { addSearchedTerm } from "../../features/search/searchedTerm/searchedTermSlice";
 import User from "../../components/User/User";
 import "./HomePage.scss";
@@ -46,6 +49,17 @@ const HomePage = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
+    switch (searchedType) {
+      case "albums":
+        dispatch(removeSearchedAlbums());
+        break;
+      case "artists":
+        dispatch(removeSearchedArtists());
+        break;
+      case "tracks":
+      default:
+        dispatch(removeSearchedTracks());
+    }
     dispatch(addSearchedTerm(searchedTerm));
   };
 

@@ -11,6 +11,10 @@ const searchedAlbumsSlice = createSlice({
     searchedAlbumsLoading: false,
   },
   reducers: {
+    removeSearchedAlbums: (state) => ({
+      ...state,
+      searchedAlbums: [],
+    }),
     removeSelectedAlbum: (state) => ({
       ...state,
       selectedAlbum: null,
@@ -49,6 +53,7 @@ const searchedAlbumsSlice = createSlice({
   },
 });
 
-export const { removeSelectedAlbum } = searchedAlbumsSlice.actions;
+export const { removeSelectedAlbum, removeSearchedAlbums } =
+  searchedAlbumsSlice.actions;
 
 export default searchedAlbumsSlice.reducer;

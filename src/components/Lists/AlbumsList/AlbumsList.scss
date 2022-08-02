@@ -1,13 +1,20 @@
 .albums_wrapper_div {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px;
+  flex-wrap: wrap;
 }
 
 .individual_album {
-  margin: 10px;
+  margin: 20px;
+  margin-left: 0;
+  padding: 15px;
+  padding-bottom: 40px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   img {
-    width: 190px;
+    width: 120px;
+  }
+  &:hover {
+    background-color: rgba(104, 109, 118, 0.9);
   }
 }

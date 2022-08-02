@@ -23,7 +23,7 @@ const ArtistsList = ({ artists }) => {
       {artists
         ?.filter(({ images }) => images?.length > 0)
         .map(({ id, images }) => (
-          <div className="individual_artist">
+          <div key={id} className="individual_artist">
             <img src={images[0].url} alt="Artist" />
             <button onClick={() => selectArtist(id)}>Learn More</button>
           </div>

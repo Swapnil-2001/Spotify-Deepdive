@@ -6,7 +6,9 @@ export const getSearchedTracks = createAsyncThunk(
   "searchedTracks/getSearchedTracks",
   async (searchTerm) => {
     try {
-      const searchedTracks = await spotify.searchTracks(searchTerm);
+      const searchedTracks = await spotify.searchTracks(searchTerm, {
+        limit: 49,
+      });
       return searchedTracks.tracks?.items;
     } catch (error) {
       console.error(

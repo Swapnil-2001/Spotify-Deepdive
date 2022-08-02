@@ -1,16 +1,17 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import LoadingSpinner from "../../LoadingSpinner";
 import { getSearchedTracks } from "../../../features/search/searchedTracks/searchedTracksFunctions";
+import { setSelectedTrackDetails } from "../../../features/search/searchedTracks/searchedTracksSlice";
 import { addSearchedType } from "../../../features/search/searchedTerm/searchedTermSlice";
 import TracksList from "../../Lists/TracksList/TracksList";
 import SelectedTrackDetails from "./SelectedTrackDetails/SelectedTrackDetails";
 
 const SearchTracksResult = () => {
   const dispatch = useDispatch();
-  const { searchedTracks, selectedTrackDetails } = useSelector(
-    (state) => state.searchedTracks
-  );
+  const { searchedTracks, searchedTracksLoading, selectedTrackDetails } =
+    useSelector((state) => state.searchedTracks);
   const { searchedTerm, searchedType } = useSelector(
     (state) => state.searchedTerm
   );
@@ -25,12 +26,15 @@ const SearchTracksResult = () => {
 
   useEffect(() => {
     dispatch(addSearchedType("tracks"));
-    if (searchedTerm !== "" && searchedType === "tracks")
+    if (searchedTerm !== "" && searchedType === "tracks") {
       dispatch(getSearchedTracks(searchedTerm));
+      dispatch(setSelectedTrackDetails(null));
+    }
   }, [searchedTerm, searchedType, dispatch]);
 
   return (
     <div>
+      {searchedTracksLoading && <LoadingSpinner />}
       {searchedTracks && <TracksList tracks={searchedTracks} />}
       {selectedTrackDetails && (
         <SelectedTrackDetails

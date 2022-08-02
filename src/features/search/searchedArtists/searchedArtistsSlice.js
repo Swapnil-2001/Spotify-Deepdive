@@ -22,6 +22,10 @@ const searchedArtistsSlice = createSlice({
     relatedArtistsLoading: false,
   },
   reducers: {
+    removeSearchedArtists: (state) => ({
+      ...state,
+      searchedArtists: [],
+    }),
     removeSelectedArtist: (state) => ({
       ...state,
       selectedArtist: null,
@@ -91,6 +95,7 @@ const searchedArtistsSlice = createSlice({
   },
 });
 
-export const { removeSelectedArtist } = searchedArtistsSlice.actions;
+export const { removeSelectedArtist, removeSearchedArtists } =
+  searchedArtistsSlice.actions;
 
 export default searchedArtistsSlice.reducer;
