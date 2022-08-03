@@ -1,8 +1,8 @@
 import "./ArtistInfo.scss";
 
-const ArtistInfo = ({ selectedArtist }) => {
+const ArtistInfo = ({ artistsRef, selectedArtist }) => {
   return (
-    <div className="artist_info_div">
+    <div ref={artistsRef} className="artist_info_div">
       {selectedArtist.images?.length > 0 && (
         <img src={selectedArtist.images[0].url} alt="Artist" />
       )}

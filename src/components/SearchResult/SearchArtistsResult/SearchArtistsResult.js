@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingSpinner from "../../LoadingSpinner";
 
@@ -29,6 +29,20 @@ const SearchArtistsResult = () => {
     (state) => state.searchedTerm
   );
 
+  const artistsRef = useRef(null);
+  const scrollToView = () => {
+    artistsRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  useEffect(() => {
+    if (
+      selectedArtist &&
+      artistTopTracks?.length > 0 &&
+      artistAlbums?.length > 0 &&
+      relatedArtists?.length > 0
+    )
+      scrollToView();
+  }, [selectedArtist, artistTopTracks, artistAlbums, relatedArtists]);
+
   useEffect(() => {
     dispatch(addSearchedType("artists"));
     if (searchedTerm !== "" && searchedType === "artists") {
@@ -42,7 +56,9 @@ const SearchArtistsResult = () => {
       {searchedArtistsLoading && <LoadingSpinner />}
       {searchedArtists && <ArtistsList artists={searchedArtists} />}
       {selectedArtistLoading && <LoadingSpinner />}
-      {selectedArtist && <ArtistInfo selectedArtist={selectedArtist} />}
+      {selectedArtist && (
+        <ArtistInfo artistsRef={artistsRef} selectedArtist={selectedArtist} />
+      )}
       {artistTopTracksLoading && <LoadingSpinner />}
       {artistTopTracks?.length > 0 && (
         <TopTracks artistTopTracks={artistTopTracks} />
