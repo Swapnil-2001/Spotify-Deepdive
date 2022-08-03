@@ -1,4 +1,6 @@
 .user_name_div {
-  font-size: 2.5rem;
-  color: white;
+  display: flex;
+  h1 {
+    font-size: 2.5rem;
+  }
 }

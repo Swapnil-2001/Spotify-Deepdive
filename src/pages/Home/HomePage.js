@@ -22,6 +22,14 @@ const HomePage = () => {
   const { searchedType } = useSelector((state) => state.searchedTerm);
 
   useEffect(() => {
+    const isHomeRoute =
+      window.location.pathname === "/" || window.location.pathname === "";
+    if (isHomeRoute) {
+      navigate("tracks");
+    }
+  }, [navigate]);
+
+  useEffect(() => {
     if (!isAccessTokenValid()) {
       localStorage.clear();
       navigate("/login");
