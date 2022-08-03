@@ -8,10 +8,10 @@
   align-items: center;
 }
 
-.track_img {
+.track_img_div {
   display: flex;
   align-items: center;
-  img {
+  .selected_track_img {
     width: 10rem;
   }
 }

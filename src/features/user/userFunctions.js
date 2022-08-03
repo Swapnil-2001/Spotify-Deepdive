@@ -21,7 +21,9 @@ export const getUserRecentTracks = createAsyncThunk(
   "user/getUserRecentTracks",
   async () => {
     try {
-      const userRecentTracks = await spotify.getMyRecentlyPlayedTracks();
+      const userRecentTracks = await spotify.getMyRecentlyPlayedTracks({
+        limit: 50,
+      });
       return userRecentTracks.items;
     } catch (error) {
       console.error(

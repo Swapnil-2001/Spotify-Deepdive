@@ -9,12 +9,19 @@ import {
 const userSlice = createSlice({
   name: "user",
   initialState: {
+    page: "",
     userProfile: null,
     userLoading: false,
     userRecentTracks: [],
     userRecentTracksLoading: false,
     userTopTracks: [],
     userTopTracksLoading: false,
+  },
+  reducers: {
+    setPage: (state, action) => ({
+      ...state,
+      page: action.payload,
+    }),
   },
   extraReducers: (builder) => {
     builder
@@ -62,5 +69,7 @@ const userSlice = createSlice({
       }));
   },
 });
+
+export const { setPage } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,0 +1,24 @@
+.user_items_wrapper_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user_buttons_div {
+  margin-top: 50px;
+  .user_button {
+    background: none;
+    font-size: 1.3rem;
+    color: #eeeeee;
+    padding: 10px 20px;
+    transition: 0.3s all ease-in-out;
+    font-weight: bold;
+    &:hover {
+      background-color: #393e46;
+    }
+  }
+  .user_button_selected {
+    color: #f05454;
+    border-bottom: 4px solid #f05454;
+  }
+}

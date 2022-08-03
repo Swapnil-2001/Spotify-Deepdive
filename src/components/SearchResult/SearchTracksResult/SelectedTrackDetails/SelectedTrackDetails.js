@@ -5,8 +5,8 @@ const SelectedTrackDetails = ({ tracksRef, trackDetails }) => {
 
   return (
     <div ref={tracksRef} className="selected_track_details_div">
-      <div className="track_img">
-        <img src={trackImgUrl} alt="Track" />
+      <div className="track_img_div">
+        <img src={trackImgUrl} alt="Track" className="selected_track_img" />
       </div>
       <div className="track_name_and_artist">
         <h1>{trackName}</h1>
