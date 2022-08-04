@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import {
   getArtist,
@@ -11,6 +12,7 @@ import "./ArtistsList.scss";
 
 const ArtistsList = ({ artists }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const selectArtist = (artistId) => {
     dispatch(removeSelectedArtist());
@@ -18,6 +20,7 @@ const ArtistsList = ({ artists }) => {
     dispatch(getArtistTopTracks(artistId));
     dispatch(getArtistAlbums(artistId));
     dispatch(getRelatedArtists(artistId));
+    navigate("/artists");
   };
 
   return (
