@@ -23,19 +23,27 @@ const AlbumsList = ({ albums, removePreviousAlbums }) => {
   };
 
   return (
-    <div className="albums_wrapper_div">
+    <div className="albums_list_div">
       {albums.map((album) => (
         <div
           key={album.id}
-          className="individual_album"
+          className="individual_album_in_list"
           onClick={() => selectAlbum(album.id)}
         >
           {album.images?.length > 0 ? (
             <div>
-              <img src={album.images[0].url} alt="Album Cover" />
+              <img
+                className="album_img"
+                src={album.images[0].url}
+                alt="Album Cover"
+              />
             </div>
           ) : (
-            <img src={DEFAULT_PICTURE} alt="Album Cover" />
+            <img
+              className="album_img"
+              src={DEFAULT_PICTURE}
+              alt="Album Cover"
+            />
           )}
         </div>
       ))}

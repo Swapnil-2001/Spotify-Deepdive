@@ -99,7 +99,7 @@ const HomePage = () => {
           Artists
         </button>
       </div>
-      <div className="right_section_div">
+      <div className="home_right_section_div">
         {userLoading && <Audio color="#fff" height={60} width={60} />}
         {userProfile && <User userProfile={userProfile} />}
         <form onSubmit={handleSearch}>
@@ -108,7 +108,7 @@ const HomePage = () => {
             value={searchedTerm}
             onChange={(e) => setSearchedTerm(e.target.value)}
           />
-          <button className="search_button" type="submit">
+          <button className="styled_button" type="submit">
             Search
           </button>
         </form>

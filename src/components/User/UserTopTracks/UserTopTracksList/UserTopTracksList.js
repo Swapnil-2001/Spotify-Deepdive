@@ -3,7 +3,7 @@ import "./UserTopTracksList.scss";
 
 const UserTopTracksList = ({ tracks }) => {
   return (
-    <div className="recent_tracks_header">
+    <div className="user_top_tracks_div">
       <h1 style={{ marginBottom: "30px" }}>Your Favourite Tracks</h1>
       <div>
         {tracks.map((track) => (

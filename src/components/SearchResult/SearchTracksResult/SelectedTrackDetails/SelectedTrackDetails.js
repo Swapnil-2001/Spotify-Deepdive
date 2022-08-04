@@ -11,15 +11,15 @@ const SelectedTrackDetails = ({ tracksRef, trackDetails }) => {
       <div className="track_img_div">
         <img src={trackImgUrl} alt="Track" className="selected_track_img" />
       </div>
-      <div className="track_name_and_artist">
-        <h1>{trackName}</h1>
+      <div className="selected_track_name_and_artist">
+        <h1 className="selected_track_name">{trackName}</h1>
         <h2>{artistName}</h2>
       </div>
       {playPreview && <audio src={preview_url} autoPlay hidden={true} />}
       {preview_url && (
         <button
           style={{ marginLeft: "auto" }}
-          className="search_button"
+          className="styled_button"
           onClick={() => setPlayPreview(!playPreview)}
         >
           {playPreview ? "Stop" : "Play"}

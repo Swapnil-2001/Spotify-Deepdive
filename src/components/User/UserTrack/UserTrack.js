@@ -45,7 +45,7 @@ const UserTrack = ({ track, played_at }) => {
           if (track?.preview_url) setPreviewUrl(track.preview_url);
         }}
         onMouseLeave={() => setPreviewUrl("")}
-        className="individual_track_recent"
+        className="individual_user_track_div"
         onClick={() =>
           selectTrack(
             track?.artists,

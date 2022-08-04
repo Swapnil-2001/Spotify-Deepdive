@@ -1,26 +1,23 @@
-.individual_track_recent {
+.individual_user_track_div {
   display: flex;
   align-items: center;
-  min-width: 900px;
   padding: 7px 20px;
+  min-width: 900px;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s all ease-in-out;
+  .track_img {
+    width: 70px;
+    margin-right: 25px;
+  }
+  .track_name {
+    font-weight: bold;
+  }
+  .track_artist {
+    font-size: 0.7rem;
+    margin-top: 5px;
+  }
   &:hover {
     background-color: rgba(104, 109, 118, 0.9);
   }
-}
-
-.track_img {
-  width: 70px;
-  margin-right: 25px;
-}
-
-.track_name {
-  font-weight: bold;
-}
-
-.track_artist {
-  font-size: 0.7rem;
-  margin-top: 5px;
 }

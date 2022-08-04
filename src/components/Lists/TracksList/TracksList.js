@@ -37,14 +37,14 @@ const TracksList = ({ tracks, removePreviousTracks }) => {
   };
 
   return (
-    <div className="tracks_wrapper_div">
+    <div className="tracks_list_div">
       {previewUrl.length > 0 && (
         <audio src={previewUrl} autoPlay hidden={true} />
       )}
       {tracks.map(({ id, album, preview_url, name, artists }) => (
         <div
           key={id}
-          className="individual_track"
+          className="individual_track_in_list"
           onClick={() => selectTrack(artists, album, name, id, preview_url)}
           onMouseEnter={() => {
             if (preview_url) setPreviewUrl(preview_url);
@@ -52,9 +52,13 @@ const TracksList = ({ tracks, removePreviousTracks }) => {
           onMouseLeave={() => setPreviewUrl("")}
         >
           {album?.images?.length > 0 ? (
-            <img src={album.images[0].url} alt="Track" />
+            <img className="track_img" src={album.images[0].url} alt="Track" />
           ) : (
-            <img src={DEFAULT_TRACK_PICTURE} alt="Track" />
+            <img
+              className="track_img"
+              src={DEFAULT_TRACK_PICTURE}
+              alt="Track"
+            />
           )}
         </div>
       ))}

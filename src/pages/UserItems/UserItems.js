@@ -43,7 +43,7 @@ const UserItems = () => {
   };
 
   return (
-    <div className="user_items_wrapper_div">
+    <div className="user_items_main_div">
       <div className="user_buttons_div">
         <button
           className={`user_button ${

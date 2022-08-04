@@ -21,7 +21,7 @@ const UserTopArtists = () => {
   }, [userTopArtists, dispatch]);
 
   return (
-    <div className="user_top_artists_wrapper">
+    <div className="user_top_artists_div">
       {userTopArtistsLoading && <LoadingSpinner />}
       {userTopArtists?.length > 0 && (
         <div className="user_top_artists_list_div">

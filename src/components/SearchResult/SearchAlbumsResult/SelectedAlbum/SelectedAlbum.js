@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { setSelectedTrackDetails } from "../../../../features/search/searchedTracks/searchedTracksSlice";
+import {
+  setSelectedTrackDetails,
+  removeSearchedTracks,
+} from "../../../../features/search/searchedTracks/searchedTracksSlice";
 import { addSearchedTerm } from "../../../../features/search/searchedTerm/searchedTermSlice";
 import DEFAULT_PICTURE from "../../../../assets/music.png";
 import "./SelectedAlbum.scss";
@@ -14,6 +17,7 @@ const SelectedAlbum = ({ albumsRef, selectedAlbum }) => {
   const dispatch = useDispatch();
 
   const selectTrack = (artists, images, trackName, trackId, preview_url) => {
+    dispatch(removeSearchedTracks());
     const trackDetails = {
       trackId,
       trackName,
@@ -32,13 +36,17 @@ const SelectedAlbum = ({ albumsRef, selectedAlbum }) => {
   };
 
   return (
-    <div ref={albumsRef} className="all_tracks_in_album">
-      <div className="album_image_and_name">
+    <div ref={albumsRef} className="all_tracks_in_album_div">
+      <div className="album_image_and_name_div">
         <h2 className="album_heading">Album</h2>
         {selectedAlbum.images?.length > 0 ? (
-          <img src={selectedAlbum.images[0].url} alt="Track" />
+          <img
+            className="album_img"
+            src={selectedAlbum.images[0].url}
+            alt="Album"
+          />
         ) : (
-          <img src={DEFAULT_PICTURE} alt="Track" />
+          <img className="album_img" src={DEFAULT_PICTURE} alt="Album" />
         )}
         <h2 className="album_name">{selectedAlbum.name}</h2>
         <h4>
@@ -48,8 +56,8 @@ const SelectedAlbum = ({ albumsRef, selectedAlbum }) => {
       {previewUrl.length > 0 && (
         <audio src={previewUrl} autoPlay hidden={true} />
       )}
-      <div className="track_names">
-        <h2>Tracks</h2>
+      <div className="track_names_in_album">
+        <h2 className="tracks_heading">Tracks</h2>
         {selectedAlbum.tracks?.items?.map(({ id, name, preview_url }) => (
           <div
             onMouseEnter={() => {
@@ -60,10 +68,10 @@ const SelectedAlbum = ({ albumsRef, selectedAlbum }) => {
               setPreviewUrl("");
               setHoveredTrackId(null);
             }}
-            className="individual_track_in_album"
+            className="individual_track_in_selected_album"
             key={id}
           >
-            <span>{name}</span>
+            <span className="track_name_in_selected_album">{name}</span>
             <button
               className={
                 id === hoveredTrackId
