@@ -4,6 +4,7 @@ import {
   getUserProfile,
   getUserRecentTracks,
   getUserTopTracks,
+  getUserTopArtists,
 } from "./userFunctions";
 
 const userSlice = createSlice({
@@ -16,6 +17,8 @@ const userSlice = createSlice({
     userRecentTracksLoading: false,
     userTopTracks: [],
     userTopTracksLoading: false,
+    userTopArtists: [],
+    userTopArtistsLoading: false,
   },
   reducers: {
     setPage: (state, action) => ({
@@ -66,6 +69,20 @@ const userSlice = createSlice({
         ...state,
         userTopTracks: action.payload,
         userTopTracksLoading: false,
+      }))
+      .addCase(getUserTopArtists.pending, (state) => ({
+        ...state,
+        userTopArtistsLoading: true,
+      }))
+      .addCase(getUserTopArtists.rejected, (state) => ({
+        ...state,
+        userTopArtists: [],
+        userTopArtistsLoading: false,
+      }))
+      .addCase(getUserTopArtists.fulfilled, (state, action) => ({
+        ...state,
+        userTopArtists: action.payload,
+        userTopArtistsLoading: false,
       }));
   },
 });

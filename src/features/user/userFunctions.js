@@ -38,11 +38,26 @@ export const getUserTopTracks = createAsyncThunk(
   "user/getUserTopTracks",
   async () => {
     try {
-      const userTopTracks = await spotify.getMyTopTracks();
+      const userTopTracks = await spotify.getMyTopTracks({ limit: 50 });
       return userTopTracks.items;
     } catch (error) {
       console.error(
         "An error occurred while fetching user's top tracks. ",
+        error
+      );
+    }
+  }
+);
+
+export const getUserTopArtists = createAsyncThunk(
+  "user/getUserTopArtists",
+  async () => {
+    try {
+      const userTopArtists = await spotify.getMyTopArtists();
+      return userTopArtists.items;
+    } catch (error) {
+      console.error(
+        "An error occurred while fetching user's top artists. ",
         error
       );
     }
