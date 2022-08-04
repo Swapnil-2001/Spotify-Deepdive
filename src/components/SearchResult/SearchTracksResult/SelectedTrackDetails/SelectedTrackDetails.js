@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import "./SelectedTrackDetails.scss";
 
 const SelectedTrackDetails = ({ tracksRef, trackDetails }) => {
@@ -16,7 +17,13 @@ const SelectedTrackDetails = ({ tracksRef, trackDetails }) => {
       </div>
       {playPreview && <audio src={preview_url} autoPlay hidden={true} />}
       {preview_url && (
-        <button onClick={() => setPlayPreview(!playPreview)}>Play</button>
+        <button
+          style={{ marginLeft: "auto" }}
+          className="search_button"
+          onClick={() => setPlayPreview(!playPreview)}
+        >
+          {playPreview ? "Stop" : "Play"}
+        </button>
       )}
     </div>
   );

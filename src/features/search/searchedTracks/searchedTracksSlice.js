@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getSearchedTracks } from "./searchedTracksFunctions";
+import {
+  getSearchedTracks,
+  getTrackAudioFeatures,
+} from "./searchedTracksFunctions";
 
 const searchedTracksSlice = createSlice({
   name: "searchedTracks",
@@ -8,6 +11,8 @@ const searchedTracksSlice = createSlice({
     searchedTracks: [],
     searchedTracksLoading: false,
     selectedTrackDetails: null,
+    selectedTrackFeatures: null,
+    selectedTrackFeaturesLoading: false,
   },
   reducers: {
     removeSearchedTracks: (state) => ({
@@ -34,6 +39,20 @@ const searchedTracksSlice = createSlice({
         ...state,
         searchedTracksLoading: false,
         searchedTracks: action.payload,
+      }))
+      .addCase(getTrackAudioFeatures.pending, (state) => ({
+        ...state,
+        selectedTrackFeaturesLoading: true,
+      }))
+      .addCase(getTrackAudioFeatures.rejected, (state) => ({
+        ...state,
+        selectedTrackFeatures: null,
+        selectedTrackFeaturesLoading: false,
+      }))
+      .addCase(getTrackAudioFeatures.fulfilled, (state, action) => ({
+        ...state,
+        selectedTrackFeatures: action.payload,
+        selectedTrackFeaturesLoading: false,
       }));
   },
 });

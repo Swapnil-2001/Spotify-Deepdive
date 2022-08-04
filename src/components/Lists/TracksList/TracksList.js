@@ -6,6 +6,7 @@ import {
   removeSearchedTracks,
   setSelectedTrackDetails,
 } from "../../../features/search/searchedTracks/searchedTracksSlice";
+import { getTrackAudioFeatures } from "../../../features/search/searchedTracks/searchedTracksFunctions";
 import { addSearchedTerm } from "../../../features/search/searchedTerm/searchedTermSlice";
 import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
 import "./TracksList.scss";
@@ -32,6 +33,7 @@ const TracksList = ({ tracks, removePreviousTracks }) => {
     dispatch(addSearchedTerm(""));
     navigate("/tracks");
     dispatch(setSelectedTrackDetails(trackDetails));
+    dispatch(getTrackAudioFeatures(id));
   };
 
   return (

@@ -7,11 +7,17 @@ import { setSelectedTrackDetails } from "../../../features/search/searchedTracks
 import { addSearchedType } from "../../../features/search/searchedTerm/searchedTermSlice";
 import TracksList from "../../Lists/TracksList/TracksList";
 import SelectedTrackDetails from "./SelectedTrackDetails/SelectedTrackDetails";
+import SelectedTrackFeatures from "./SelectedTrackFeatures/SelectedTrackFeatures";
 
 const SearchTracksResult = () => {
   const dispatch = useDispatch();
-  const { searchedTracks, searchedTracksLoading, selectedTrackDetails } =
-    useSelector((state) => state.searchedTracks);
+  const {
+    searchedTracks,
+    searchedTracksLoading,
+    selectedTrackDetails,
+    selectedTrackFeatures,
+    selectedTrackFeaturesLoading,
+  } = useSelector((state) => state.searchedTracks);
   const { searchedTerm, searchedType } = useSelector(
     (state) => state.searchedTerm
   );
@@ -43,6 +49,10 @@ const SearchTracksResult = () => {
           tracksRef={tracksRef}
           trackDetails={selectedTrackDetails}
         />
+      )}
+      {selectedTrackFeaturesLoading && <LoadingSpinner />}
+      {selectedTrackFeatures && (
+        <SelectedTrackFeatures features={selectedTrackFeatures} />
       )}
     </div>
   );
