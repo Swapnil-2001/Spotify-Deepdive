@@ -2,23 +2,28 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { setSelectedTrackDetails } from "../../../features/search/searchedTracks/searchedTracksSlice";
+import {
+  removeSearchedTracks,
+  setSelectedTrackDetails,
+} from "../../../features/search/searchedTracks/searchedTracksSlice";
 import { addSearchedTerm } from "../../../features/search/searchedTerm/searchedTermSlice";
 import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
 import "./TracksList.scss";
 
-const TracksList = ({ tracks }) => {
+const TracksList = ({ tracks, removePreviousTracks }) => {
   const [previewUrl, setPreviewUrl] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const selectTrack = (artists, album, name, id) => {
+  const selectTrack = (artists, album, name, id, preview_url) => {
+    if (removePreviousTracks) dispatch(removeSearchedTracks());
     const trackDetails = {
       trackId: id,
       trackName: name,
       artistId: artists?.length > 0 ? artists[0].id : null,
       artistName: artists?.length > 0 ? artists[0].name : null,
       trackImgUrl: "",
+      preview_url,
     };
     if (!trackDetails.artistId || !trackDetails.artistName) return;
     if (album?.images?.length > 0) {
@@ -38,7 +43,7 @@ const TracksList = ({ tracks }) => {
         <div
           key={id}
           className="individual_track"
-          onClick={() => selectTrack(artists, album, name, id)}
+          onClick={() => selectTrack(artists, album, name, id, preview_url)}
           onMouseEnter={() => {
             if (preview_url) setPreviewUrl(preview_url);
           }}

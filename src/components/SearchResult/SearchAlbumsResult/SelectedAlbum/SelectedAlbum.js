@@ -13,13 +13,14 @@ const SelectedAlbum = ({ albumsRef, selectedAlbum }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const selectTrack = (artists, images, trackName, trackId) => {
+  const selectTrack = (artists, images, trackName, trackId, preview_url) => {
     const trackDetails = {
       trackId,
       trackName,
       artistId: artists?.length > 0 ? artists[0].id : null,
       artistName: artists?.length > 0 ? artists[0].name : null,
       trackImgUrl: "",
+      preview_url,
     };
     if (!trackDetails.artistId || !trackDetails.artistName) return;
     if (images?.length > 0) {
@@ -74,7 +75,8 @@ const SelectedAlbum = ({ albumsRef, selectedAlbum }) => {
                   selectedAlbum.artists,
                   selectedAlbum.images,
                   name,
-                  id
+                  id,
+                  preview_url
                 )
               }
             >

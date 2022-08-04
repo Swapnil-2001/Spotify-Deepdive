@@ -35,7 +35,9 @@ const SearchTracksResult = () => {
   return (
     <div>
       {searchedTracksLoading && <LoadingSpinner />}
-      {searchedTracks && <TracksList tracks={searchedTracks} />}
+      {searchedTracks && (
+        <TracksList removePreviousTracks={false} tracks={searchedTracks} />
+      )}
       {selectedTrackDetails && (
         <SelectedTrackDetails
           tracksRef={tracksRef}

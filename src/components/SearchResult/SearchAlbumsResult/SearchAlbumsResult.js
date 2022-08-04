@@ -36,7 +36,9 @@ const SearchAlbumsResult = () => {
   return (
     <div>
       {searchedAlbumsLoading && <LoadingSpinner />}
-      {searchedAlbums && <AlbumsList albums={searchedAlbums} />}
+      {searchedAlbums && (
+        <AlbumsList removePreviousAlbums={false} albums={searchedAlbums} />
+      )}
       {selectedAlbumLoading && <LoadingSpinner />}
       {selectedAlbum && (
         <SelectedAlbum albumsRef={albumsRef} selectedAlbum={selectedAlbum} />

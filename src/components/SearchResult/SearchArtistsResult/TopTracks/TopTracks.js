@@ -4,7 +4,7 @@ const TopTracks = ({ artistTopTracks }) => {
   return (
     <>
       <h2 style={{ color: "#eeeeee" }}>Top Tracks</h2>
-      <TracksList tracks={artistTopTracks} />
+      <TracksList removePreviousTracks={true} tracks={artistTopTracks} />
     </>
   );
 };

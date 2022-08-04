@@ -6,7 +6,7 @@ const ArtistAlbums = ({ artistAlbums }) => {
       <h2 style={{ color: "#eeeeee", marginBottom: "10px", marginTop: "25px" }}>
         Albums
       </h2>
-      <AlbumsList albums={artistAlbums} />
+      <AlbumsList removePreviousAlbums={true} albums={artistAlbums} />
     </div>
   );
 };

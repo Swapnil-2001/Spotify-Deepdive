@@ -18,3 +18,20 @@ export const getSearchedTracks = createAsyncThunk(
     }
   }
 );
+
+export const getTrackAudioFeatures = createAsyncThunk(
+  "searchedTracks/getTrackAudioFeatures",
+  async (trackId) => {
+    try {
+      const trackAudioFeatures = await spotify.getAudioFeaturesForTrack(
+        trackId
+      );
+      return trackAudioFeatures;
+    } catch (error) {
+      console.error(
+        "An error occurred while fetching track's audio features. ",
+        error
+      );
+    }
+  }
+);
