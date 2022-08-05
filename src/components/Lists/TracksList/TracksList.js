@@ -2,13 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import {
-  removeSearchedTracks,
-  removeSelectedTrackFeatures,
-  setSelectedTrackDetails,
-} from "../../../features/search/searchedTracks/searchedTracksSlice";
-import { getTrackAudioFeatures } from "../../../features/search/searchedTracks/searchedTracksFunctions";
-import { addSearchedTerm } from "../../../features/search/searchedTerm/searchedTermSlice";
+import { selectTrack } from "../../../utils/functions";
 import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
 import "./TracksList.scss";
 
@@ -16,27 +10,6 @@ const TracksList = ({ tracks, removePreviousTracks }) => {
   const [previewUrl, setPreviewUrl] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const selectTrack = (artists, album, name, id, preview_url) => {
-    if (removePreviousTracks) dispatch(removeSearchedTracks());
-    dispatch(removeSelectedTrackFeatures());
-    const trackDetails = {
-      trackId: id,
-      trackName: name,
-      artistId: artists?.length > 0 ? artists[0].id : null,
-      artistName: artists?.length > 0 ? artists[0].name : null,
-      trackImgUrl: "",
-      preview_url,
-    };
-    if (!trackDetails.artistId || !trackDetails.artistName) return;
-    if (album?.images?.length > 0) {
-      trackDetails.trackImgUrl = album.images[0].url;
-    }
-    dispatch(addSearchedTerm(""));
-    navigate("/tracks");
-    dispatch(setSelectedTrackDetails(trackDetails));
-    dispatch(getTrackAudioFeatures(id));
-  };
 
   return (
     <div className="tracks_list_div">
@@ -47,7 +20,18 @@ const TracksList = ({ tracks, removePreviousTracks }) => {
         <div
           key={id}
           className="individual_track_in_list"
-          onClick={() => selectTrack(artists, album, name, id, preview_url)}
+          onClick={() =>
+            selectTrack(
+              dispatch,
+              navigate,
+              artists,
+              album?.images,
+              name,
+              id,
+              preview_url,
+              removePreviousTracks
+            )
+          }
           onMouseEnter={() => {
             if (preview_url) setPreviewUrl(preview_url);
           }}

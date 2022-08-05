@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import LoadingSpinner from "../../LoadingSpinner";
 import { getSearchedTracks } from "../../../features/search/searchedTracks/searchedTracksFunctions";
-import { setSelectedTrackDetails } from "../../../features/search/searchedTracks/searchedTracksSlice";
+import {
+  setSelectedTrackDetails,
+  removeSelectedTrackData,
+} from "../../../features/search/searchedTracks/searchedTracksSlice";
 import { addSearchedType } from "../../../features/search/searchedTerm/searchedTermSlice";
 import TracksList from "../../Lists/TracksList/TracksList";
 import SelectedTrackDetails from "./SelectedTrackDetails/SelectedTrackDetails";
@@ -35,6 +38,7 @@ const SearchTracksResult = () => {
     if (searchedTerm !== "" && searchedType === "tracks") {
       dispatch(getSearchedTracks(searchedTerm));
       dispatch(setSelectedTrackDetails(null));
+      dispatch(removeSelectedTrackData());
     }
   }, [searchedTerm, searchedType, dispatch]);
 

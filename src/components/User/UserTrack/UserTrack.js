@@ -2,11 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { addSearchedTerm } from "../../../features/search/searchedTerm/searchedTermSlice";
-import {
-  removeSearchedTracks,
-  setSelectedTrackDetails,
-} from "../../../features/search/searchedTracks/searchedTracksSlice";
+import { selectTrack } from "../../../utils/functions";
 import DEFAULT_TRACK_PICTURE from "../../../assets/music.png";
 import "./UserTrack.scss";
 
@@ -15,25 +11,6 @@ const UserTrack = ({ track, played_at }) => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const selectTrack = (artists, album, name, id, preview_url) => {
-    dispatch(removeSearchedTracks());
-    const trackDetails = {
-      trackId: id,
-      trackName: name,
-      artistId: artists?.length > 0 ? artists[0].id : null,
-      artistName: artists?.length > 0 ? artists[0].name : null,
-      trackImgUrl: "",
-      preview_url,
-    };
-    if (!trackDetails.artistId || !trackDetails.artistName) return;
-    if (album?.images?.length > 0) {
-      trackDetails.trackImgUrl = album.images[0].url;
-    }
-    dispatch(addSearchedTerm(""));
-    navigate("/tracks");
-    dispatch(setSelectedTrackDetails(trackDetails));
-  };
 
   return (
     <>
@@ -48,11 +25,14 @@ const UserTrack = ({ track, played_at }) => {
         className="individual_user_track_div"
         onClick={() =>
           selectTrack(
+            dispatch,
+            navigate,
             track?.artists,
-            track?.album,
+            track?.album?.images,
             track?.name,
             track?.id,
-            track?.preview_url
+            track?.preview_url,
+            true
           )
         }
       >

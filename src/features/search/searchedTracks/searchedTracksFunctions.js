@@ -42,3 +42,20 @@ export const getTrackAudioFeatures = createAsyncThunk(
     }
   }
 );
+
+export const getTrackRecommendations = createAsyncThunk(
+  "searchedTracks/getTrackRecommendations",
+  async (trackId) => {
+    try {
+      const trackRecommendations = await spotify.getRecommendations({
+        seed_tracks: trackId,
+      });
+      return trackRecommendations.tracks;
+    } catch (error) {
+      console.error(
+        "An error occurred while fetching recommended tracks for the selected track. ",
+        error
+      );
+    }
+  }
+);

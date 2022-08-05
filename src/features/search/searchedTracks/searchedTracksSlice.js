@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getSearchedTracks,
   getTrackAudioFeatures,
+  getTrackRecommendations,
 } from "./searchedTracksFunctions";
 
 const searchedTracksSlice = createSlice({
@@ -13,15 +14,18 @@ const searchedTracksSlice = createSlice({
     selectedTrackDetails: null,
     selectedTrackFeatures: null,
     selectedTrackFeaturesLoading: false,
+    selectedTrackRecommendations: [],
+    selectedTrackRecommendationsLoading: false,
   },
   reducers: {
     removeSearchedTracks: (state) => ({
       ...state,
       searchedTracks: [],
     }),
-    removeSelectedTrackFeatures: (state) => ({
+    removeSelectedTrackData: (state) => ({
       ...state,
       selectedTrackFeatures: null,
+      selectedTrackRecommendations: [],
     }),
     setSelectedTrackDetails: (state, action) => ({
       ...state,
@@ -57,13 +61,27 @@ const searchedTracksSlice = createSlice({
         ...state,
         selectedTrackFeatures: action.payload,
         selectedTrackFeaturesLoading: false,
+      }))
+      .addCase(getTrackRecommendations.pending, (state) => ({
+        ...state,
+        selectedTrackRecommendationsLoading: true,
+      }))
+      .addCase(getTrackRecommendations.rejected, (state) => ({
+        ...state,
+        selectedTrackRecommendations: [],
+        selectedTrackRecommendationsLoading: false,
+      }))
+      .addCase(getTrackRecommendations.fulfilled, (state, action) => ({
+        ...state,
+        selectedTrackRecommendations: action.payload,
+        selectedTrackRecommendationsLoading: false,
       }));
   },
 });
 
 export const {
   setSelectedTrackDetails,
-  removeSelectedTrackFeatures,
+  removeSelectedTrackData,
   removeSearchedTracks,
 } = searchedTracksSlice.actions;
 
