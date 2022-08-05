@@ -6,6 +6,16 @@ import {
   setSelectedTrackDetails,
 } from "../features/search/searchedTracks/searchedTracksSlice";
 import {
+  removeSearchedArtists,
+  removeSelectedArtist,
+} from "../features/search/searchedArtists/searchedArtistsSlice";
+import {
+  getArtist,
+  getArtistAlbums,
+  getArtistTopTracks,
+  getRelatedArtists,
+} from "../features/search/searchedArtists/searchedArtistsFunctions";
+import {
   getTrackAudioFeatures,
   getTrackRecommendations,
 } from "../features/search/searchedTracks/searchedTracksFunctions";
@@ -66,6 +76,21 @@ export const selectTrack = (
   dispatch(setSelectedTrackDetails(trackDetails));
   dispatch(getTrackAudioFeatures(trackId));
   dispatch(getTrackRecommendations(trackId));
+};
+
+export const selectArtist = (
+  dispatch,
+  navigate,
+  artistId,
+  removePreviousArtists
+) => {
+  if (removePreviousArtists) dispatch(removeSearchedArtists());
+  dispatch(removeSelectedArtist());
+  dispatch(getArtist(artistId));
+  dispatch(getArtistTopTracks(artistId));
+  dispatch(getArtistAlbums(artistId));
+  dispatch(getRelatedArtists(artistId));
+  navigate("/artists");
 };
 
 const spotify = new SpotifyWebApi();

@@ -23,4 +23,12 @@
   .selected_track_name {
     margin-bottom: 30px;
   }
+  .selected_track_artist_div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    .selected_track_artist_name {
+      margin-right: 15px;
+    }
+  }
 }
