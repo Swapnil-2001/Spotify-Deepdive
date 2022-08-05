@@ -1,0 +1,16 @@
+.not_found_page_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px;
+}
+
+.not_found_page_redirect_div {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  .not_found_page_text {
+    font-size: 1.2rem;
+    margin-right: 10px;
+  }
+}

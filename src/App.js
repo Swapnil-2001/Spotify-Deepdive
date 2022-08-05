@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import RedirectPage from "./pages/Redirect/RedirectPage";
 import HomePage from "./pages/Home/HomePage";
 import UserItems from "./pages/UserItems/UserItems";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import UserRecentTracks from "./components/User/UserRecentTracks/UserRecentTracks";
 import UserTopArtists from "./components/User/UserTopArtists/UserTopArtists";
 import UserTopTracks from "./components/User/UserTopTracks/UserTopTracks";
@@ -27,6 +28,7 @@ const App = () => {
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="redirect" element={<RedirectPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

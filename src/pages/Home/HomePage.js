@@ -105,6 +105,13 @@ const HomePage = () => {
         <form onSubmit={handleSearch}>
           <input
             className="search_input"
+            placeholder={
+              searchedType === "tracks"
+                ? "Search tracks"
+                : searchedType === "albums"
+                ? "Search albums"
+                : "Search artists"
+            }
             value={searchedTerm}
             onChange={(e) => setSearchedTerm(e.target.value)}
           />

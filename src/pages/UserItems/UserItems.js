@@ -69,6 +69,13 @@ const UserItems = () => {
         >
           Top Artists
         </button>
+        <button
+          onClick={() => navigate("/tracks")}
+          style={{ marginLeft: "20px" }}
+          className="styled_button"
+        >
+          Home
+        </button>
       </div>
       {accessTokenSet && <Outlet />}
     </div>

@@ -1,13 +1,13 @@
 .all_tracks_in_album_div {
   display: flex;
-  min-width: 875px;
+  min-width: 700px;
   padding: 30px 40px;
   margin-top: 30px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   .album_img {
-    width: 300px;
+    width: 280px;
   }
 }
 
@@ -15,20 +15,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 2;
+  flex: 3;
   .album_heading {
     font-size: 2rem;
     margin-bottom: 30px;
   }
   .album_name {
-    font-size: 2rem;
     margin-top: 25px;
     margin-bottom: 10px;
+    font-size: 2rem;
+    text-align: center;
   }
 }
 
 .track_names_in_album {
-  flex: 3;
+  flex: 5;
   margin-left: 40px;
   .tracks_heading {
     font-size: 2rem;
@@ -64,5 +65,17 @@
   }
   &:hover {
     background-color: rgba(104, 109, 118, 0.9);
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .all_tracks_in_album_div {
+    min-width: 600px;
+    .album_img {
+      width: 250px;
+    }
+  }
+  .album_name {
+    font-size: 1.5rem !important;
   }
 }

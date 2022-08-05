@@ -1,0 +1,23 @@
+.login_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_text {
+  margin-top: 200px;
+  margin-bottom: 30px;
+}
+
+.login_button {
+  padding: 15px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: rgba(1, 146, 103, 1);
+  color: white;
+  border-radius: 7px;
+  transition: background-color 0.3s ease-in-out;
+  &:hover {
+    background-color: rgba(1, 146, 103, 0.8);
+  }
+}
