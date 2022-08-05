@@ -7,14 +7,18 @@ import {
   getArtistAlbums,
   getRelatedArtists,
 } from "../../../features/search/searchedArtists/searchedArtistsFunctions";
-import { removeSelectedArtist } from "../../../features/search/searchedArtists/searchedArtistsSlice";
+import {
+  removeSelectedArtist,
+  removeSearchedArtists,
+} from "../../../features/search/searchedArtists/searchedArtistsSlice";
 import "./ArtistsList.scss";
 
-const ArtistsList = ({ artists }) => {
+const ArtistsList = ({ artists, removePreviousArtists }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const selectArtist = (artistId) => {
+    if (removePreviousArtists) dispatch(removeSearchedArtists());
     dispatch(removeSelectedArtist());
     dispatch(getArtist(artistId));
     dispatch(getArtistTopTracks(artistId));

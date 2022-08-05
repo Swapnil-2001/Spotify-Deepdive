@@ -49,6 +49,7 @@ export const getTrackRecommendations = createAsyncThunk(
     try {
       const trackRecommendations = await spotify.getRecommendations({
         seed_tracks: trackId,
+        limit: 50,
       });
       return trackRecommendations.tracks;
     } catch (error) {

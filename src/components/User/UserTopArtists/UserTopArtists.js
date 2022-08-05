@@ -26,7 +26,7 @@ const UserTopArtists = () => {
       {userTopArtists?.length > 0 && (
         <div className="user_top_artists_list_div">
           <h1 style={{ marginBottom: "30px" }}>Your Favourite Artists</h1>
-          <ArtistsList artists={userTopArtists} />
+          <ArtistsList artists={userTopArtists} removePreviousArtists={true} />
         </div>
       )}
     </div>

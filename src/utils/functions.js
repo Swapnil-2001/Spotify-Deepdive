@@ -5,7 +5,10 @@ import {
   removeSelectedTrackData,
   setSelectedTrackDetails,
 } from "../features/search/searchedTracks/searchedTracksSlice";
-import { getTrackAudioFeatures } from "../features/search/searchedTracks/searchedTracksFunctions";
+import {
+  getTrackAudioFeatures,
+  getTrackRecommendations,
+} from "../features/search/searchedTracks/searchedTracksFunctions";
 import { addSearchedTerm } from "../features/search/searchedTerm/searchedTermSlice";
 
 //  Returns an object of the format:
@@ -62,6 +65,7 @@ export const selectTrack = (
   navigate("/tracks");
   dispatch(setSelectedTrackDetails(trackDetails));
   dispatch(getTrackAudioFeatures(trackId));
+  dispatch(getTrackRecommendations(trackId));
 };
 
 const spotify = new SpotifyWebApi();
