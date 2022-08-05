@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
   removeSearchedTracks,
+  removeSelectedTrackFeatures,
   setSelectedTrackDetails,
 } from "../../../features/search/searchedTracks/searchedTracksSlice";
 import { getTrackAudioFeatures } from "../../../features/search/searchedTracks/searchedTracksFunctions";
@@ -18,6 +19,7 @@ const TracksList = ({ tracks, removePreviousTracks }) => {
 
   const selectTrack = (artists, album, name, id, preview_url) => {
     if (removePreviousTracks) dispatch(removeSearchedTracks());
+    dispatch(removeSelectedTrackFeatures());
     const trackDetails = {
       trackId: id,
       trackName: name,

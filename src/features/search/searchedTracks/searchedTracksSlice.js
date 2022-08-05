@@ -19,6 +19,10 @@ const searchedTracksSlice = createSlice({
       ...state,
       searchedTracks: [],
     }),
+    removeSelectedTrackFeatures: (state) => ({
+      ...state,
+      selectedTrackFeatures: null,
+    }),
     setSelectedTrackDetails: (state, action) => ({
       ...state,
       selectedTrackDetails: action.payload,
@@ -57,7 +61,10 @@ const searchedTracksSlice = createSlice({
   },
 });
 
-export const { setSelectedTrackDetails, removeSearchedTracks } =
-  searchedTracksSlice.actions;
+export const {
+  setSelectedTrackDetails,
+  removeSelectedTrackFeatures,
+  removeSearchedTracks,
+} = searchedTracksSlice.actions;
 
 export default searchedTracksSlice.reducer;

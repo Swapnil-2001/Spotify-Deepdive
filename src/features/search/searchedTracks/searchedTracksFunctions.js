@@ -26,7 +26,14 @@ export const getTrackAudioFeatures = createAsyncThunk(
       const trackAudioFeatures = await spotify.getAudioFeaturesForTrack(
         trackId
       );
-      return trackAudioFeatures;
+      return {
+        danceability: trackAudioFeatures.danceability,
+        energy: trackAudioFeatures.energy,
+        valence: trackAudioFeatures.valence,
+        duration: trackAudioFeatures.duration_ms,
+        loudness: trackAudioFeatures.loudness,
+        acousticness: trackAudioFeatures.acousticness,
+      };
     } catch (error) {
       console.error(
         "An error occurred while fetching track's audio features. ",

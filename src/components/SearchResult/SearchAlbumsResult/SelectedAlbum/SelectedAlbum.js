@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import {
   setSelectedTrackDetails,
   removeSearchedTracks,
+  removeSelectedTrackFeatures,
 } from "../../../../features/search/searchedTracks/searchedTracksSlice";
 import { addSearchedTerm } from "../../../../features/search/searchedTerm/searchedTermSlice";
 import DEFAULT_PICTURE from "../../../../assets/music.png";
@@ -18,6 +19,7 @@ const SelectedAlbum = ({ albumsRef, selectedAlbum }) => {
 
   const selectTrack = (artists, images, trackName, trackId, preview_url) => {
     dispatch(removeSearchedTracks());
+    dispatch(removeSelectedTrackFeatures());
     const trackDetails = {
       trackId,
       trackName,

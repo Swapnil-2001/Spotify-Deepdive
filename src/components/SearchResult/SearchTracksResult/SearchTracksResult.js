@@ -27,8 +27,8 @@ const SearchTracksResult = () => {
     tracksRef.current?.scrollIntoView({ behavior: "smooth" });
   };
   useEffect(() => {
-    scrollToView();
-  }, [selectedTrackDetails]);
+    if (selectedTrackFeatures && selectedTrackDetails) scrollToView();
+  }, [selectedTrackFeatures, selectedTrackDetails]);
 
   useEffect(() => {
     dispatch(addSearchedType("tracks"));
