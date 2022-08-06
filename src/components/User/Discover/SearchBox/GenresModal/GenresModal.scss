@@ -1,0 +1,55 @@
+.select_genres_heading {
+  margin-top: 15px;
+}
+
+.chosen_genre {
+  margin: 5px;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+}
+
+.genres_list_modal {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 0;
+  margin-top: 20px;
+  min-width: 75%;
+  max-width: 80%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #eeeeee;
+    border-radius: 5px;
+  }
+}
+
+.genre_in_modal {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  .genre_name_modal {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+}
+
+.not_chosen {
+  &:hover {
+    background-color: #7f8487;
+  }
+}
+
+.chosen {
+  background-color: rgba(0, 0, 0, 0.35);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.55);
+  }
+}

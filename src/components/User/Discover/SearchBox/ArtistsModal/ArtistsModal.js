@@ -1,21 +1,58 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
+import {
+  addArtist,
+  removeArtist,
+} from "../../../../../features/user/userSlice";
 import DEFAULT_IMAGE from "../../../../../assets/music.png";
 import "./ArtistsModal.scss";
 
 const ArtistsModal = () => {
-  const { userTopArtists } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { userTopArtists, chosenArtists } = useSelector((state) => state.user);
+
+  const handleArtistChosen = (artist) => {
+    const hasArtistBeenChosen =
+      chosenArtists.filter((chosenArtist) => artist.id === chosenArtist.id)
+        .length > 0;
+    if (hasArtistBeenChosen) {
+      dispatch(removeArtist(artist.id));
+    } else if (chosenArtists.length < 2) {
+      dispatch(addArtist(artist));
+    }
+  };
 
   return (
     <div className="modal">
-      <h3 className="select_artists_heading">Select Artists (upto 5)</h3>
+      <h3 className="select_artists_heading">Select Artists (upto 2)</h3>
+      {chosenArtists.length > 0 && (
+        <div className="chosen_artists_div">
+          {chosenArtists.map((chosenArtist) => (
+            <span className="chosen_artist" key={chosenArtist.id}>
+              {chosenArtist.name.length > 20
+                ? chosenArtist.name.substring(0, 20) + "..."
+                : chosenArtist.name}
+            </span>
+          ))}
+        </div>
+      )}
       <div className="top_artists_list_modal">
-        {userTopArtists.map(({ id, images, name }) => (
-          <div className="artist_in_modal" key={id}>
-            {images?.length > 0 ? (
+        {userTopArtists.map((artist) => (
+          <div
+            onClick={() => handleArtistChosen(artist)}
+            className={`artist_in_modal ${
+              chosenArtists.filter(
+                (chosenArtist) => artist.id === chosenArtist.id
+              ).length > 0
+                ? "chosen"
+                : "not_chosen"
+            }`}
+            key={artist.id}
+          >
+            {artist.images?.length > 0 ? (
               <img
                 className="artist_img_modal"
-                src={images[0].url}
+                src={artist.images[0].url}
                 alt="Artist"
               />
             ) : (
@@ -25,7 +62,7 @@ const ArtistsModal = () => {
                 alt="Artist"
               />
             )}
-            <span className="artist_name_modal">{name}</span>
+            <span className="artist_name_modal">{artist.name}</span>
           </div>
         ))}
       </div>

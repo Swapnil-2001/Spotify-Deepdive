@@ -12,6 +12,31 @@
   .disclaimer {
     color: #f05454;
   }
+  .error_message {
+    margin-top: 20px;
+    color: red;
+    font-weight: 600;
+  }
+  .search_recommendations_button_div {
+    margin: 30px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.search_recommendations_button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #f05454;
+  background: none;
+  font-weight: bold;
+  border-radius: 10px;
+  border: 2px solid #f05454;
+  transition: background-color 0.2s ease-in-out;
+  &:hover {
+    background-color: #f05454;
+    color: white;
+  }
 }
 
 .modal_bg {

@@ -2,12 +2,29 @@
   margin-top: 15px;
 }
 
+.chosen_artists_div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0 30px;
+  margin-top: 20px;
+  .chosen_artist {
+    margin: 5px;
+    padding: 10px;
+    font-size: 0.8rem;
+    background-color: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+  }
+}
+
 .top_artists_list_modal {
   display: flex;
   flex-direction: column;
   margin: 25px 0;
-  min-width: 70%;
-  max-width: 75%;
+  margin-top: 20px;
+  min-width: 75%;
+  max-width: 80%;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width: 8px;
@@ -21,15 +38,31 @@
 .artist_in_modal {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
   .artist_img_modal {
     margin-right: 15px;
-    width: 65px;
+    width: 55px;
     border-radius: 50%;
     object-fit: contain;
   }
   .artist_name_modal {
     font-size: 0.9rem;
     font-weight: 600;
+  }
+}
+
+.not_chosen {
+  &:hover {
+    background-color: #7f8487;
+  }
+}
+
+.chosen {
+  background-color: rgba(0, 0, 0, 0.35);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.55);
   }
 }

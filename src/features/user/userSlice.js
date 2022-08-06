@@ -5,6 +5,7 @@ import {
   getUserRecentTracks,
   getUserTopTracks,
   getUserTopArtists,
+  getUserRecommendations,
 } from "./userFunctions";
 
 const userSlice = createSlice({
@@ -19,25 +20,59 @@ const userSlice = createSlice({
     userTopTracksLoading: false,
     userTopArtists: [],
     userTopArtistsLoading: false,
-    pickGenres: false,
-    chosenGenres: [],
+    pickGenre: false,
+    chosenGenre: "",
     pickArtists: false,
     chosenArtists: [],
     pickTracks: false,
     chosenTracks: [],
+    userRecommendations: [],
+    userRecommendationsLoading: false,
   },
   reducers: {
     setPage: (state, action) => ({
       ...state,
       page: action.payload,
     }),
-    setPickGenres: (state, action) => ({
+    setPickGenre: (state, action) => ({
       ...state,
-      pickGenres: action.payload,
+      pickGenre: action.payload,
     }),
     setPickArtists: (state, action) => ({
       ...state,
       pickArtists: action.payload,
+    }),
+    addArtist: (state, action) => ({
+      ...state,
+      chosenArtists: [...state.chosenArtists, action.payload],
+    }),
+    removeArtist: (state, action) => ({
+      ...state,
+      chosenArtists: state.chosenArtists.filter(
+        (artist) => artist.id !== action.payload
+      ),
+    }),
+    addTrack: (state, action) => ({
+      ...state,
+      chosenTracks: [...state.chosenTracks, action.payload],
+    }),
+    removeTrack: (state, action) => ({
+      ...state,
+      chosenTracks: state.chosenTracks.filter(
+        (track) => track.id !== action.payload
+      ),
+    }),
+    addGenre: (state, action) => ({
+      ...state,
+      chosenGenre: action.payload,
+    }),
+    removeGenre: (state) => ({
+      ...state,
+      chosenGenre: "",
+    }),
+    removePrevRecommendations: (state) => ({
+      ...state,
+      userRecommendations: [],
     }),
     setPickTracks: (state, action) => ({
       ...state,
@@ -101,11 +136,36 @@ const userSlice = createSlice({
         ...state,
         userTopArtists: action.payload,
         userTopArtistsLoading: false,
+      }))
+      .addCase(getUserRecommendations.pending, (state) => ({
+        ...state,
+        userRecommendationsLoading: true,
+      }))
+      .addCase(getUserRecommendations.rejected, (state) => ({
+        ...state,
+        userRecommendations: [],
+        userRecommendationsLoading: false,
+      }))
+      .addCase(getUserRecommendations.fulfilled, (state, action) => ({
+        ...state,
+        userRecommendations: action.payload,
+        userRecommendationsLoading: false,
       }));
   },
 });
 
-export const { setPage, setPickArtists, setPickGenres, setPickTracks } =
-  userSlice.actions;
+export const {
+  setPage,
+  setPickArtists,
+  addArtist,
+  removeArtist,
+  addTrack,
+  removeTrack,
+  addGenre,
+  removeGenre,
+  setPickGenre,
+  setPickTracks,
+  removePrevRecommendations,
+} = userSlice.actions;
 
 export default userSlice.reducer;

@@ -63,3 +63,24 @@ export const getUserTopArtists = createAsyncThunk(
     }
   }
 );
+
+export const getUserRecommendations = createAsyncThunk(
+  "user/getUserRecommendations",
+  async (userInput) => {
+    const { artistsSeed, tracksSeed, genresSeed } = userInput;
+    try {
+      const userRecommendations = await spotify.getRecommendations({
+        seed_artists: artistsSeed,
+        seed_genres: genresSeed,
+        seed_tracks: tracksSeed,
+        limit: 100,
+      });
+      return userRecommendations.tracks;
+    } catch (error) {
+      console.error(
+        "An error occurred while fetching recommended tracks for user. ",
+        error
+      );
+    }
+  }
+);
