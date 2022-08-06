@@ -11,3 +11,17 @@ export const featureDescriptionMapping = {
   valence:
     "A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).",
 };
+
+export const genres = [
+  "pop",
+  "rap",
+  "rock",
+  "hip hop",
+  "r&b",
+  "electro",
+  "country",
+  "modern bollywood",
+  "folk",
+  "classical",
+  "jazz",
+];

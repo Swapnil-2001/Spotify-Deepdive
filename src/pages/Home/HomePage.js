@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Audio } from "react-loader-spinner";
 
 import spotify, { isAccessTokenValid } from "../../utils/functions";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { getUserProfile } from "../../features/user/userFunctions";
 import { removeSearchedTracks } from "../../features/search/searchedTracks/searchedTracksSlice";
 import { removeSearchedAlbums } from "../../features/search/searchedAlbums/searchedAlbumsSlice";
@@ -100,7 +100,7 @@ const HomePage = () => {
         </button>
       </div>
       <div className="home_right_section_div">
-        {userLoading && <Audio color="#fff" height={60} width={60} />}
+        {userLoading && <LoadingSpinner />}
         {userProfile && <User userProfile={userProfile} />}
         <form onSubmit={handleSearch}>
           <input

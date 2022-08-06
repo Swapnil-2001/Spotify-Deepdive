@@ -19,11 +19,29 @@ const userSlice = createSlice({
     userTopTracksLoading: false,
     userTopArtists: [],
     userTopArtistsLoading: false,
+    pickGenres: false,
+    chosenGenres: [],
+    pickArtists: false,
+    chosenArtists: [],
+    pickTracks: false,
+    chosenTracks: [],
   },
   reducers: {
     setPage: (state, action) => ({
       ...state,
       page: action.payload,
+    }),
+    setPickGenres: (state, action) => ({
+      ...state,
+      pickGenres: action.payload,
+    }),
+    setPickArtists: (state, action) => ({
+      ...state,
+      pickArtists: action.payload,
+    }),
+    setPickTracks: (state, action) => ({
+      ...state,
+      pickTracks: action.payload,
     }),
   },
   extraReducers: (builder) => {
@@ -87,6 +105,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setPage } = userSlice.actions;
+export const { setPage, setPickArtists, setPickGenres, setPickTracks } =
+  userSlice.actions;
 
 export default userSlice.reducer;

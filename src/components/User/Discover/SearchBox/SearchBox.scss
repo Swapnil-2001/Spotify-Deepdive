@@ -1,0 +1,10 @@
+.search_box_outer_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0;
+  .heading {
+    margin: 25px 0;
+    margin-bottom: 20px;
+  }
+}

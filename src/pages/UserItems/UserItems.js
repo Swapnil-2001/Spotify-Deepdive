@@ -42,6 +42,10 @@ const UserItems = () => {
     navigate("artists");
   };
 
+  const goToDiscover = () => {
+    navigate("discover");
+  };
+
   return (
     <div className="user_items_main_div">
       <div className="user_buttons_div">
@@ -68,6 +72,14 @@ const UserItems = () => {
           onClick={goToUserTopArtists}
         >
           Top Artists
+        </button>
+        <button
+          className={`user_button ${
+            page === "discover" ? "user_button_selected" : ""
+          }`}
+          onClick={goToDiscover}
+        >
+          Discover
         </button>
         <button
           onClick={() => navigate("/tracks")}

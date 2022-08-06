@@ -11,6 +11,7 @@ import UserTopTracks from "./components/User/UserTopTracks/UserTopTracks";
 import SearchTracksResult from "./components/SearchResult/SearchTracksResult/SearchTracksResult";
 import SearchAlbumsResult from "./components/SearchResult/SearchAlbumsResult/SearchAlbumsResult";
 import SearchArtistsResult from "./components/SearchResult/SearchArtistsResult/SearchArtistsResult";
+import Discover from "./components/User/Discover/Discover";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="tracks" element={<UserTopTracks />} />
           <Route path="artists" element={<UserTopArtists />} />
           <Route path="recent" element={<UserRecentTracks />} />
+          <Route path="discover" element={<Discover />} />
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="redirect" element={<RedirectPage />} />
