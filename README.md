@@ -1,3 +1,15 @@
+This web app allows users to search for songs, artists and albums. Hover over a song item and it'll play a 30 sec preview of the song, provided by Spotify. Also offers interesting insights into a song and its features (Danceability, Energy, Acousticness, etc).
+
+Features a section personalised to the user's listening taste. Gives a list of the user's top tracks, artists and recently played songs. And offers recommendations based on the selected genre, artist(s) and track(s).
+
+<img width="1470" alt="Screenshot 2023-06-07 at 12 41 10 AM" src="https://github.com/Swapnil-2001/Spotify-Explore/assets/53232360/859ab90b-39db-454b-9ae6-b9c5e08f11fc">
+
+<img width="1358" alt="Screenshot 2023-06-07 at 12 39 48 AM" src="https://github.com/Swapnil-2001/Spotify-Explore/assets/53232360/141042e4-b6c6-4fa3-ad2f-ea69bdbbaf8c">
+
+<img width="1358" alt="Screenshot 2023-06-07 at 12 37 33 AM" src="https://github.com/Swapnil-2001/Spotify-Explore/assets/53232360/75e880ed-7bd5-4dd8-af57-35f21aa7a60c">
+
+<img width="1470" alt="Screenshot 2023-06-07 at 12 36 26 AM" src="https://github.com/Swapnil-2001/Spotify-Explore/assets/53232360/1a3d1866-938f-406f-be6b-d36387880057">
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
